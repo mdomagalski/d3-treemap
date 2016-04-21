@@ -27,26 +27,12 @@
 Attribute     | Options     | Default      | Description
 ---           | ---         | ---          | ---
 `data`        | *array*     |  null        | input data for the chart
-`gridSize`    | *number*    | `14`         | pixel size of the single chart tile
-`margin`      | *array*     | { top: 200,  | svg margins
-              |             | right: 100,  |
-              |             | bottom: 50,  |
-              |             | left: 200}   | 
- `sorting`    | *string*    | null         | string containing name of currently 
-              |             |              | applied sorting function               
 
 ## Methods
 
 Method                    | Parameters   | Returns     | Description
 ---                       | ---          | ---         | ---
 `attached()`              | None.        | Nothing.    | generates chart
-`_dataChanged()`          | None.        | Nothing.    | listener, reloads the chart when this.data is changed
-`_sortObserver()`         | None.        | Nothing.    | listener monitoring 'sorting' dropdown menu 
-`formatChartDescription()`| None.        | Nothing.    | Updates chart description after data change
-`createRowLabels()`       | None.        | Nothing.    | Generate labels
-`createColumnLabels()`    | None.        | Nothing.    | Generate labels
-`createCardsAndBar()`     | None.        | Nothing.    | Generate chart tiles and score bar
-`sortBySequenceAndComposition()`| None.  | Nothing.    | Sorting function
 
 
 ## Development
