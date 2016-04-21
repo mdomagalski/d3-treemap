@@ -1,0 +1,20 @@
+{
+  "name": "d3-treemap",
+  "version": "0.0.1",
+  "description": "D3 treemap element",
+  "license": "MIT",
+  "main": "d3-treemap.html",
+  "keywords": [
+    "polymer",
+    "web-components"
+  ],
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.4",
+    "d3": "^3.5.16",
+    "iron-ajax": "PolymerElements/iron-ajax#^1.2.0"
+  }
+}

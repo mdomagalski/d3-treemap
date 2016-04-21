@@ -1,0 +1,73 @@
+<!-- Imports polymer -->
+<link rel="import" href="../polymer/polymer.html">
+
+<!-- Import d3 and heatmap generating script -->
+<script src="../d3/d3.js"></script>
+<!-- Defines element markup -->
+<dom-module id="d3-treemap">
+    <template></template>
+    <!-- Registers custom element -->
+    <script>
+        Polymer({
+            is: 'd3-treemap',
+            properties: {
+                data: {
+                    type: Object,
+                    value: {}
+                },
+                margin: {
+                    type: Number,
+                    value: 50
+                }
+            },
+            attached: function () {
+                console.log(this.data);
+                var width = innerWidth - this.margin,
+                    height = innerHeight - this.margin,
+                    color = d3.scale.category20c(),
+                    div = d3.select(this).append("div")
+                        .style("position", "relative");
+
+                var treemap = d3.layout.treemap()
+                    .size([width, height])
+                    .sticky(true)
+                    .value(function (d) {
+                        return d.size;
+                    });
+
+                var node = div.datum(this.data).selectAll(".node")
+                    .data(treemap.nodes)
+                    .enter().append("div")
+                    .attr("class", "node")
+                    .call(position)
+                    .style("position", "absolute")
+                    .style("background-color", function (d) {
+                        return d.name == 'tree' ? '#fff' : color(d.name);
+                    })
+                    .append('div')
+                    .style("font-size", function (d) {
+                        // compute font size based on sqrt(area)
+                        return Math.max(20, 0.18 * Math.sqrt(d.area)) + 'px';
+                    })
+                    .text(function (d) {
+                        return d.children ? null : d.name;
+                    });
+
+                function position() {
+                    this.style("left", function (d) {
+                            return d.x + "px";
+                        })
+                        .style("top", function (d) {
+                            return d.y + "px";
+                        })
+                        .style("width", function (d) {
+                            return Math.max(0, d.dx - 1) + "px";
+                        })
+                        .style("height", function (d) {
+                            return Math.max(0, d.dy - 1) + "px";
+                        });
+                }
+            }
+        });
+    </script>
+</dom-module>
